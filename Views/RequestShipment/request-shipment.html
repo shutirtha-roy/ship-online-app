@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShipOnline System - Shipping Request</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .shipping-form {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .form-section {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .btn-request {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+        .btn-request:hover {
+            background-color: #0b5ed7;
+            border-color: #0b5ed7;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ShipOnline System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="../Home/home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Request Shipment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Track Shipment</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Domestic Shipping</a></li>
+                            <li><a class="dropdown-item" href="#">International Shipping</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Bulk Orders</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" tabindex="-1">Contact</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Track your package" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Track</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="shipping-form">
+                    <h2 class="text-center mb-4">Shipping Request Form</h2>
+                    <form>
+                        <div class="form-section">
+                            <h4>Item Information</h4>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description (up to 200 words)</label>
+                                <textarea class="form-control description-area" id="description" rows="6" placeholder="Please provide a detailed description of your item(s). Include information such as contents, fragility, special handling instructions, or any other relevant details." required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="weight" class="form-label">Weight</label>
+                                <select class="form-select" id="weight" required>
+                                    <option value="">Select Weight</option>
+                                    <option value="1">0-1 kg</option>
+                                    <option value="2">1-5 kg</option>
+                                    <option value="3">5-10 kg</option>
+                                    <option value="4">10+ kg</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Pick-up Information</h4>
+                            <div class="mb-3">
+                                <label for="pickupAddress" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="pickupAddress" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="pickupSuburb" class="form-label">Suburb</label>
+                                <input type="text" class="form-control" id="pickupSuburb" required>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="pickupDate" class="form-label">Preferred Date</label>
+                                    <input type="date" class="form-control" id="pickupDate" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="pickupTime" class="form-label">Preferred Time</label>
+                                    <input type="time" class="form-control" id="pickupTime" required>
+                                </div>
+                            </div>
+                            <small class="text-muted">If you don't mind when your shipment will be picked up you can leave these fields empty</small>
+                        </div>
+
+                        <div class="form-section">
+                            <h4>Delivery Information</h4>
+                            <div class="mb-3">
+                                <label for="receiverName" class="form-label">Receiver Name</label>
+                                <input type="text" class="form-control" id="receiverName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="deliveryAddress" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="deliveryAddress" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="deliverySuburb" class="form-label">Suburb</label>
+                                <input type="text" class="form-control" id="deliverySuburb" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="deliveryState" class="form-label">State</label>
+                                <select class="form-select" id="deliveryState" required>
+                                    <option value="">Select State</option>
+                                    <option value="NSW">New South Wales</option>
+                                    <option value="VIC">Victoria</option>
+                                    <option value="QLD">Queensland</option>
+                                    <option value="WA">Western Australia</option>
+                                    <option value="SA">South Australia</option>
+                                    <option value="TAS">Tasmania</option>
+                                    <option value="ACT">Australian Capital Territory</option>
+                                    <option value="NT">Northern Territory</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-request">Request Shipment</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light text-center text-muted py-3">
+        <div class="container">
+            &copy; 2024 ShipOnline System. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
