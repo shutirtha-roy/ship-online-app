@@ -1,0 +1,12 @@
+.welcome-section {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-top: 50px;
+}
+
+.feature-icon {
+    font-size: 2rem;
+    color: #0d6efd;
+}
