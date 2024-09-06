@@ -1,5 +1,8 @@
 <?php
 define("SERVER_NAME", "feenix-mariadb.swin.edu.au");
+define("LOCAL_SERVER_NAME", "localhost");
+define("LOCAL_USERNAME", "root");
+define("LOCAL_PASSWORD", "");
 define("USERNAME", "s105008711");
 define("PASSWORD", "060499");
 define("DATABASE", "s105008711_db");

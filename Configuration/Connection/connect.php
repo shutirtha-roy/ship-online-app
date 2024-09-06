@@ -1,9 +1,9 @@
 <?php 
 	include '../Constants/database-server-constants.php';
 
-	$servername = SERVER_NAME;
-	$username = USERNAME;
-	$password = PASSWORD;
+	$servername = LOCAL_SERVER_NAME;
+	$username = LOCAL_USERNAME;
+	$password = LOCAL_PASSWORD;
 	$database = DATABASE;
 
 	$dbConnect = @mysqli_connect($servername, $username, $password, $database)
