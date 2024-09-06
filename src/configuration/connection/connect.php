@@ -1,5 +1,5 @@
 <?php 
-	include '../Constants/database-server-constants.php';
+	include '../../configuration/constants/database-server-constants.php';
 
 	$servername = LOCAL_SERVER_NAME;
 	$username = LOCAL_USERNAME;

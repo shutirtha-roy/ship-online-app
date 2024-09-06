@@ -1,5 +1,6 @@
 <?php
-    include '../Constants/database-constants.php';
+    include '../../configuration/connection/connect.php';
+    include '../../configuration/constants/database-constants.php';
 
     function selectQuery($dbConnect, $table, 
         $columns = ALL, $conditions = '') {
