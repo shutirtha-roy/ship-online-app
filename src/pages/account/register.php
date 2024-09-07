@@ -1,5 +1,6 @@
 <?php
-include '../../../src/repository/repository.php';
+include '../../../src/helpers/account_validation.php';
+include '../../../src/service/account_service.php';
 ?>
 
 <!DOCTYPE html>
@@ -24,10 +25,10 @@ include '../../../src/repository/repository.php';
                         <a class="nav-link active" aria-current="page" href="../Home/home.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../RequestShipment/request-shipment.html">Request Shipment</a>
+                        <a class="nav-link" href="../requestShipment/request-shipment.html">Request Shipment</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html" tabindex="-1">Login</a>
+                        <a class="nav-link" href="login.php" tabindex="-1">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../Account/register.html" tabindex="-1">Register</a>
@@ -42,26 +43,26 @@ include '../../../src/repository/repository.php';
             <div class="col-md-6">
                 <div class="registration-form">
                     <h2 class="text-center mb-4">Registration</h2>
-                    <form>
+                    <form action="register.php" method="post">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" required>
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" required>
+                            <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <div class="mb-3">
                             <label for="confirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword" required>
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="email" required>
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Contact Phone</label>
-                            <input type="tel" class="form-control" id="phone" required>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-register">Register</button>
@@ -84,3 +85,16 @@ include '../../../src/repository/repository.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+<?php
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $confirmPassword = $_POST["confirm_password"];
+    $phone = $_POST["phone"];
+    
+    registerUser($name, $email, $password, $confirmPassword, $phone);
+}
+
+?>
