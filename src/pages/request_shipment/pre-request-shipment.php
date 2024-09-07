@@ -6,6 +6,8 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
      exit;
 }
 
+$customer_number = $_SESSION['customer_number'];
+
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +21,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     <link rel="stylesheet" href="../../Assets/CSS/pre-request.shipment.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">ShipOnline System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +45,11 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                 <button class="btn btn-outline-danger" type="button">Logout</button>
             </div>
         </div>
-    </nav>
+    </nav> -->
+
+    <?php require '../common/nav.php' ?>
+
+
 
     <div class="container">
         <div class="row justify-content-center">

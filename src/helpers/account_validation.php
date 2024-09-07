@@ -1,6 +1,6 @@
 <?php
     function matchName($name) {
-        return !empty($name) && preg_match("/^[a-zA-Z ]+$/", trim($name));
+        return !empty($name);
     }
 
     function matchEmail($email) {

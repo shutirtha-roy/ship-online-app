@@ -13,10 +13,10 @@
             return $hasCorrectInput;
         }
 
-        $customerExists = hasCustomer($dbConnect, $email);
+        $customerExists = hasCustomer($dbConnect, $email, $password);
 
-        if(!$customerExists['success']) {
-            return $customerExists;
+        if($customerExists) {
+            return ['success' => false, 'errors' => CUSTOMER_ALREADY_EXISTS];
         }
 
         $customerNumber = generateCustomerNumber($dbConnect, $email);
@@ -74,7 +74,7 @@
 
     function generateCustomerNumber($dbConnect, $email) {
         $totalCustomer = getAllCustomerNumber($dbConnect, $email);
-        $customerNumber = DATABASE_ERROR_MESSAGE. ($totalCustomer + 1);
+        $customerNumber = CUSTOMER_NUMBER_INDEX. ($totalCustomer + 1);
         return $customerNumber;
     }
 
