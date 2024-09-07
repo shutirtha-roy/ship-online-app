@@ -28,9 +28,8 @@
             return ['success' => false, 'errors' => ERROR_REGISTRATION];
         }
 
-        setSession($email, $customerNumber);
-        $_SESSION['name'] = $name;
-        $_SESSION['just_registered'] = true;
+        setRegistrationSession($email, $customerNumber, $name);
+        
 
         header("location: ../request_shipment/pre-request-shipment.php");
     }
@@ -56,7 +55,7 @@
         return ['success' => true, 'errors' => ''];
     }
 
-    function hasLoginCustomer($dbConnect, $email) {
+    function hasLoginCustomer($dbConnect, $customerNumber) {
         if(doesCustomerExist($dbConnect, $email)) {
             return ['success' => false, 'errors' => USER_ALREADY_EXISTS];
         }
@@ -80,23 +79,31 @@
         return $customerNumber;
     }
 
-    function setSession($email, $customerNumber) {
+    function setRegistrationSession($email, $customerNumber, $name) {
         session_start();
-        $_SESSION['name'] = "";
         $_SESSION['loggedin'] = true;
         $_SESSION['email'] = $email;
         $_SESSION['customer_number'] = $customerNumber;
+        $_SESSION['name'] = $name;
+        $_SESSION['just_registered'] = true;
     }
 
-    function loginUser($dbConnect, $email, $password) {
-        if(!matchEmail($email)) {
-            return ['success' => false, 'errors' => ERROR_EMAIL_INVALID];
+    function setLoginSession($customerNumber, $name) {
+        session_start();
+        $_SESSION['name'] = $name;
+        $_SESSION['loggedin'] = true;
+        $_SESSION['customer_number'] = $customerNumber;
+    }
+
+    function loginUser($dbConnect, $customerNumber, $password) {
+        if(!hasCustomerWithCustomerNumber($dbConnect, $customerNumber, $password)) {
+            return ['success' => false, 'errors' => CUSTOMER_ALREADY_EXISTS];
         }
 
-        $loginUser = hasLoginCustomer($dbConnect, $email, $password);
+        $loginUser = hasLoginCustomer($dbConnect, $customerNumber, $password);
         if($loginUser) {
-            $customerNumber = getCustomerNumberFromCustomer($dbConnect, $email);
-            setSession($email, $customerNumber);
+            $name = getCustomerNameFromCustomerId($dbConnect, $customerNumber);
+            setLoginSession($customerNumber, $name);
             header("location: ../request_shipment/pre-request-shipment.php");
         };
     }

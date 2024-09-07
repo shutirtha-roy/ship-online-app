@@ -3,10 +3,10 @@ include '../../../src/service/account_service.php';
 include '../../../src/configuration/connection/connect.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST["email"];
+    $customerNumber = $_POST["customerNumber"];
     $password = $_POST["password"];
     
-    $userResponse = loginUser($dbConnect, $email, $password);
+    $userResponse = loginUser($dbConnect, $customerNumber, $password);
 }
 ?>
 
@@ -29,8 +29,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h2 class="text-center mb-4">Login</h2>
                     <form action="login.php" method="post">
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="email" name="email"  required>
+                            <label for="customerNumber" class="form-label">Customer Number</label>
+                            <input type="text" class="form-control" id="customerNumber" name="customerNumber"  required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>

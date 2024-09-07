@@ -62,7 +62,7 @@
                 <?php
                     if($loggedin) {
                         echo '<span class="navbar-text me-3">
-                            Welcome, '. $customer_number . 
+                            Welcome, '. $name . 
                             '</span>
                             <a class="btn btn-outline-danger" href="../account/logout.php">Logout</a>';
                     }                   

@@ -6,6 +6,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
      exit;
 }
 
+$name = $_SESSION['name'];
 $customer_number = $_SESSION['customer_number'];
 
 ?>
