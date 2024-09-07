@@ -1,3 +1,15 @@
+<?php
+include '../../../src/service/account_service.php';
+include '../../../src/configuration/connection/connect.php';
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    
+    $userResponse = loginUser($dbConnect, $email, $password);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +38,7 @@
                         <a class="nav-link" href="#" tabindex="-1">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../Account/register.html" tabindex="-1">Register</a>
+                        <a class="nav-link" href="../account/register.php" tabindex="-1">Register</a>
                     </li>
                 </ul>
             </div>
@@ -38,14 +50,14 @@
             <div class="col-md-6">
                 <div class="login-form">
                     <h2 class="text-center mb-4">Login</h2>
-                    <form>
+                    <form action="login.php" method="post">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="email" required>
+                            <input type="email" class="form-control" id="email" name="email"  required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" required>
+                            <input type="password" class="form-control" id="password"  name="password" required>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-login">Login</button>

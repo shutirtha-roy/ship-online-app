@@ -3,8 +3,6 @@
     include '../../helpers/account_validation.php';
     include '../../configuration/constants/account-service-contants.php';
 
-    
-
     function registerUser($dbConnect, $name, $email, $password, $confirmPassword, 
         $phone) {
         $hasCorrectInput = hasUserEnteredCorrectInputs($name, 
@@ -21,7 +19,8 @@
             return $customerExists;
         }
 
-        $data = prepareUserData($name, $email, $password, $phone);
+        $customerNumber = generateCustomerNumber($dbConnect, $email);
+        $data = prepareUserData($customerNumber, $name, $email, $password, $phone);
 
         $result = insertQuery($dbConnect, 'customer', $data);
 
@@ -29,12 +28,9 @@
             return ['success' => false, 'errors' => ERROR_REGISTRATION];
         }
 
-        
-        $_SESSION['loggedin'] = true;
-        $_SESSION['email'] = $email;
-        header("location: welcome.php");
+        setSession($email, $customerNumber);
 
-        return ['success' => true, 'errors' => ''];
+        header("location: ../request_shipment/pre-request-shipment.php");
     }
 
     function hasUserEnteredCorrectInputs($name, $email, $password, $confirmPassword, 
@@ -58,7 +54,7 @@
         return ['success' => true, 'errors' => ''];
     }
 
-    function hasCustomer($dbConnect, $email) {
+    function hasLoginCustomer($dbConnect, $email) {
         if(doesCustomerExist($dbConnect, $email)) {
             return ['success' => false, 'errors' => USER_ALREADY_EXISTS];
         }
@@ -66,12 +62,39 @@
         return ['success' => true, 'errors' => ''];
     }
 
-    function prepareUserData($name, $email, $password, $phone) {
+    function prepareUserData($customerNumber, $name, $email, $password, $phone) {
         return [
+            'customer_number' => "'" . $customerNumber . "'",
             'name' => "'" . $name . "'",
             'password' => "'" . $password . "'",
             'email_address' => "'" . $email . "'",
             'phone_number' => "'" . $phone . "'",
         ];
+    }
+
+    function generateCustomerNumber($dbConnect, $email) {
+        $totalCustomer = getAllCustomerNumber($dbConnect, $email);
+        $customerNumber = DATABASE_ERROR_MESSAGE. ($totalCustomer + 1);
+        return $customerNumber;
+    }
+
+    function setSession($email, $customerNumber) {
+        session_start();
+        $_SESSION['loggedin'] = true;
+        $_SESSION['email'] = $email;
+        $_SESSION['customer_number'] = $customerNumber;
+    }
+
+    function loginUser($dbConnect, $email, $password) {
+        if(!matchEmail($email)) {
+            return ['success' => false, 'errors' => ERROR_EMAIL_INVALID];
+        }
+
+        $loginUser = hasLoginCustomer($dbConnect, $email, $password);
+        if($loginUser) {
+            $customerNumber = getCustomerNumberFromCustomer($dbConnect, $email);
+            setSession($email, $customerNumber);
+            header("location: ../request_shipment/pre-request-shipment.php");
+        };
     }
 ?>

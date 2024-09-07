@@ -9,4 +9,5 @@ define('ERROR_PHONE_INVALID', 'Please enter a valid Australian phone number.');
 define('ERROR_PHONE_LENGTH', 'Phone number should be 10 digits for local numbers or 12 digits including country code (+61).');
 define('SUCCESS_REGISTRATION', 'Registration successful');
 define('ERROR_REGISTRATION', 'Registration failed');
+define('CUSTOMER_NUMBER_INDEX', 'CUS-S0');
 ?>

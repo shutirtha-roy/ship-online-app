@@ -62,7 +62,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>
-                            <?php if (isset($errors_helper_function['errors']['name'])) echo "<span style='color: red;'>{$errors_helper_function['name']}</span>"; ?>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
