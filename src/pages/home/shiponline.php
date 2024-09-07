@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShipOnline System - Home Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../Assets/CSS/home-ship-online.css">
+    <link rel="stylesheet" href="../../../public/css/home-ship-online.css">
 </head>
 <body>
     <?php require '../common/nav.php' ?>
@@ -14,7 +14,7 @@
         <div class="container">
             <h1 class="display-4">Welcome to ShipOnline System</h1>
             <p class="lead">Streamline your shipping operations with our advanced online platform</p>
-            <a href="#" class="btn btn-light btn-lg mt-3">Get Started</a>
+            <a href="../account/login.php" class="btn btn-light btn-lg mt-3">Get Started</a>
         </div>
     </header>
 
