@@ -1,6 +1,6 @@
 <?php
-include '../../../src/helpers/account_validation.php';
 include '../../../src/service/account_service.php';
+include '../../../src/configuration/connection/connect.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ include '../../../src/service/account_service.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../Assets/CSS/register.css">
+    <link rel="stylesheet" href="../../../public/css/register.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -94,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirmPassword = $_POST["confirm_password"];
     $phone = $_POST["phone"];
     
-    registerUser($name, $email, $password, $confirmPassword, $phone);
+    registerUser($dbConnect, $name, $email, $password, $confirmPassword, $phone);
 }
 
 ?>
