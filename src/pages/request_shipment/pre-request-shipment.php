@@ -18,7 +18,7 @@ $customer_number = $_SESSION['customer_number'];
     <title>Welcome to ShipOnline - Start Your Shipment</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../Assets/CSS/pre-request.shipment.css">
+    <link rel="stylesheet" href="../../../public/css/pre-request.shipment.css">
 </head>
 <body>
     <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -83,7 +83,7 @@ $customer_number = $_SESSION['customer_number'];
                     </div>
                     
                     <div class="text-center">
-                        <a href="request.php" class="btn btn-primary btn-lg">
+                        <a href="request-shipment.php" class="btn btn-primary btn-lg">
                             <i class="bi bi-box-seam me-2"></i>Start Your Shipment
                         </a>
                     </div>

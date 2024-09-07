@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
+     header("location: ../account/login.php");
+     exit;
+}
+
+$customer_number = $_SESSION['customer_number'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,27 +17,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShipOnline System - Shipping Request</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../Assets/CSS/request-shipment.css">
+    <link rel="stylesheet" href="../../../public/css/request-shipment.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">ShipOnline System</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../Home/home.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Request Shipment</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php require '../common/nav.php' ?>
 
     <div class="container">
         <div class="row justify-content-center">

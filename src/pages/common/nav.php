@@ -1,3 +1,11 @@
+<?php
+    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        $loggedin = true;
+    } else {
+        $loggedin = false;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,26 +26,49 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Home/shiponline.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">My Shipments</a>
-                    </li>
+                    
+                    <?php
+                        if(!$loggedin) {
+                            echo '
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../home/shiponline.php">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../account/login.php" tabindex="-1">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../account/register.php" tabindex="-1">Register</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../Admin/admin.php" tabindex="-1">Admin</a>
+                                </li>';
+                        }
+
+                        if($loggedin) {
+                            echo '<li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="pre-request-shipment.php">Dashboard</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" aria-current="page" href="request-shipment.php">Request Shipments</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">My Shipments</a>
+                                    </li>';
+                       } 
+                    ?>
+                    
                 </ul>
 
                 <?php
-                    if(isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == true) {
+                    if($loggedin) {
                         echo '<span class="navbar-text me-3">
                             Welcome, '. $customer_number . 
-                            '</span>';
-                   }                   
+                            '</span>
+                            <a class="btn btn-outline-danger" href="../account/logout.php">Logout</a>';
+                    }                   
                 ?>
                 
-                <a class="btn btn-outline-danger" href="../account/logout.php">Logout</a>
+                
             </div>
         </div>
     </nav>

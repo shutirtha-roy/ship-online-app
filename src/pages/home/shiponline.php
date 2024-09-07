@@ -8,33 +8,7 @@
     <link rel="stylesheet" href="../../Assets/CSS/home-ship-online.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">ShipOnline System</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../RequestShipment/request-shipment.html">Request Shipment</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Account/login.html" tabindex="-1">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Account/register.html" tabindex="-1">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Admin/admin.html" tabindex="-1">Admin</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <?php require '../common/nav.php' ?>
 
     <header class="hero text-center">
         <div class="container">
