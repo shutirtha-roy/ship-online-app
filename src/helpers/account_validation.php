@@ -1,23 +1,38 @@
 <?php
     function matchName($name) {
-        return ctype_alpha($name);
+        return !empty($name) && preg_match("/^[a-zA-Z ]+$/", trim($name));
     }
 
     function matchEmail($email) {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);
+        return !empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
     function matchPassword($password, $confirmPassword) {
-        return $password == $confirmPassword;
+        return !empty($password) && $password == $confirmPassword;
     }
 
     function matchPhoneNumber($phoneNumber) {
-        if (preg_match('/^\+61/', $phoneNumber)) {
-            return strlen($phoneNumber) === 12;
-        } 
+        // echo $phoneNumber . "\n";
+
+        if(empty($phoneNumber)) {
+            return false;
+        }
+        // echo strpos($phoneNumber, '0');
+        // if(strpos($phoneNumber, '0') === 0
+        //     && strlen($phoneNumber) === 10) {
+        //         echo "IT IS IN";
+        //     };
+        // //$cleanNumber = preg_replace('/[^0-9+]/', '', $phoneNumber);
+
+        if (strpos($phoneNumber, '+61') == 0
+            && strlen($phoneNumber) === 12) {
+            return true;
+        }
         
-        if (preg_match('/^0/', $phoneNumber)) {
-            return strlen($phoneNumber) === 10;
+        // Check for domestic format (0)
+        if (strpos($phoneNumber, '0') === 0
+            && strlen($phoneNumber) === 10) {
+            return true;
         }
 
         return false;

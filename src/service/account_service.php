@@ -3,34 +3,54 @@
     include '../../helpers/account_validation.php';
     include '../../configuration/constants/account-service-contants.php';
 
+    
+
     function registerUser($dbConnect, $name, $email, $password, $confirmPassword, 
         $phone) {
-        // hasUserEnteredCorrectInputs($name, 
-        //     $email, $password, 
-        //     $confirmPassword, $phone);
+        $hasCorrectInput = hasUserEnteredCorrectInputs($name, 
+            $email, $password, 
+            $confirmPassword, $phone); 
 
-        //doesCustomerExist($dbConnect, $email)
-            //Or die(USER_ALREADY_EXISTS);
-
-        $data = prepareUserData($name, $email, $password, $phone);
-
-        $result = insertQuery($dbConnect, 'customer', $data);
-
-        if($result) {
-
+        if(!$hasCorrectInput['success']) {
+            return $hasCorrectInput;
         }
 
-        if(!$result) {
-            die(ERROR_REGISTRATION);
-        }
+        //$customerExists = doesCustomerExist($dbConnect, $email);
+        //Or die(USER_ALREADY_EXISTS);
+        //$data = prepareUserData($name, $email, $password, $phone);
+
+        //$result = insertQuery($dbConnect, 'customer', $data);
+
+        // if($result) {
+
+        // }
+
+        // if(!$result) {
+        //     return ['success' => true, 'errors' => ERROR_REGISTRATION];
+        // }
+
+        return ['success' => true, 'errors' => ''];
     }
 
     function hasUserEnteredCorrectInputs($name, $email, $password, $confirmPassword, 
         $phone) {
-        matchName($name) OR die(ERROR_NAME_REQUIRED);
-        matchEmail($email) OR die(ERROR_EMAIL_INVALID);
-        matchPassword($password, $confirmPassword) OR die(ERROR_PASSWORDS_DO_NOT_MATCH);
-        matchPhoneNumber($phone) OR die(ERROR_PHONE_INVALID);
+        if(!matchName($name)) {
+            return ['success' => false, 'errors' => ERROR_NAME_REQUIRED];
+        }
+        
+        if(!matchEmail($email)) {
+            return ['success' => false, 'errors' => ERROR_EMAIL_INVALID];
+        }
+
+        if (!matchPassword($password, $confirmPassword)) {
+            return ['success' => false, 'errors' => ERROR_PASSWORDS_DO_NOT_MATCH];
+        }
+
+        if (!matchPhoneNumber($phone)) {
+            return ['success' => false, 'errors' => ERROR_PHONE_INVALID];
+        }
+
+        return ['success' => true, 'errors' => ''];
     }
 
     function prepareUserData($name, $email, $password, $phone) {

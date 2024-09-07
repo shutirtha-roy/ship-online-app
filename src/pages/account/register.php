@@ -1,6 +1,16 @@
 <?php
 include '../../../src/service/account_service.php';
 include '../../../src/configuration/connection/connect.php';
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $confirmPassword = $_POST["confirm_password"];
+    $phone = $_POST["phone"];
+    
+    $userResponse = registerUser($dbConnect, $name, $email, $password, $confirmPassword, $phone);
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +48,11 @@ include '../../../src/configuration/connection/connect.php';
         </div>
     </nav>
 
+    <?php
+        if($_SERVER["REQUEST_METHOD"] == "POST" && !$userResponse['success']) {
+            echo "<p style='color: red;'>".$userResponse['errors']."</p>";
+        }
+    ?>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -47,6 +62,7 @@ include '../../../src/configuration/connection/connect.php';
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" class="form-control" id="name" name="name" required>
+                            <?php if (isset($errors_helper_function['errors']['name'])) echo "<span style='color: red;'>{$errors_helper_function['name']}</span>"; ?>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
@@ -62,7 +78,7 @@ include '../../../src/configuration/connection/connect.php';
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Contact Phone</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                            <input type="text" class="form-control" id="phone" name="phone" required>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-register">Register</button>
@@ -85,16 +101,3 @@ include '../../../src/configuration/connection/connect.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-<?php
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $confirmPassword = $_POST["confirm_password"];
-    $phone = $_POST["phone"];
-    
-    registerUser($dbConnect, $name, $email, $password, $confirmPassword, $phone);
-}
-
-?>
