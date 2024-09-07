@@ -12,24 +12,15 @@
     }
 
     function matchPhoneNumber($phoneNumber) {
-        // echo $phoneNumber . "\n";
-
         if(empty($phoneNumber)) {
             return false;
         }
-        // echo strpos($phoneNumber, '0');
-        // if(strpos($phoneNumber, '0') === 0
-        //     && strlen($phoneNumber) === 10) {
-        //         echo "IT IS IN";
-        //     };
-        // //$cleanNumber = preg_replace('/[^0-9+]/', '', $phoneNumber);
 
         if (strpos($phoneNumber, '+61') == 0
             && strlen($phoneNumber) === 12) {
             return true;
         }
         
-        // Check for domestic format (0)
         if (strpos($phoneNumber, '0') === 0
             && strlen($phoneNumber) === 10) {
             return true;

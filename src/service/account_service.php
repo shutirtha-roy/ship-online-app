@@ -15,19 +15,24 @@
             return $hasCorrectInput;
         }
 
-        //$customerExists = doesCustomerExist($dbConnect, $email);
-        //Or die(USER_ALREADY_EXISTS);
-        //$data = prepareUserData($name, $email, $password, $phone);
+        $customerExists = hasCustomer($dbConnect, $email);
 
-        //$result = insertQuery($dbConnect, 'customer', $data);
+        if(!$customerExists['success']) {
+            return $customerExists;
+        }
 
-        // if($result) {
+        $data = prepareUserData($name, $email, $password, $phone);
 
-        // }
+        $result = insertQuery($dbConnect, 'customer', $data);
 
-        // if(!$result) {
-        //     return ['success' => true, 'errors' => ERROR_REGISTRATION];
-        // }
+        if(!$result) {
+            return ['success' => false, 'errors' => ERROR_REGISTRATION];
+        }
+
+        
+        $_SESSION['loggedin'] = true;
+        $_SESSION['email'] = $email;
+        header("location: welcome.php");
 
         return ['success' => true, 'errors' => ''];
     }
@@ -48,6 +53,14 @@
 
         if (!matchPhoneNumber($phone)) {
             return ['success' => false, 'errors' => ERROR_PHONE_INVALID];
+        }
+
+        return ['success' => true, 'errors' => ''];
+    }
+
+    function hasCustomer($dbConnect, $email) {
+        if(doesCustomerExist($dbConnect, $email)) {
+            return ['success' => false, 'errors' => USER_ALREADY_EXISTS];
         }
 
         return ['success' => true, 'errors' => ''];
