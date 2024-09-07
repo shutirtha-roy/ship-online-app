@@ -6,6 +6,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
      exit;
 }
 
+$name = $_SESSION['name'];
 $customer_number = $_SESSION['customer_number'];
 
 ?>
@@ -21,35 +22,30 @@ $customer_number = $_SESSION['customer_number'];
     <link rel="stylesheet" href="../../../public/css/pre-request.shipment.css">
 </head>
 <body>
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">ShipOnline System</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../Home/shiponline.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">My Shipments</a>
-                    </li>
-                </ul>
-                <span class="navbar-text me-3">
-                    Welcome, [Customer Name]
-                </span>
-                <button class="btn btn-outline-danger" type="button">Logout</button>
-            </div>
-        </div>
-    </nav> -->
+    <?php 
+    
+        require '../common/nav.php';
+    
+        if (isset($_SESSION['just_registered'])) {
+            $showConfirmation = true;
+            // Remove the flag so the message won't be shown again
 
-    <?php require '../common/nav.php' ?>
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <h4 class="alert-heading">Registration Successful!</h4>
+                <p>Dear <strong>' . 
+                $name . 
+                '</strong>, you are successfully registered into ShipOnline, 
+                and your customer number is <strong>' . $customer_number . 
+                '</strong>, which will be used to get into the system.</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
 
 
+            unset($_SESSION['just_registered']);
+        }
+    
+    
+    ?>
 
     <div class="container">
         <div class="row justify-content-center">

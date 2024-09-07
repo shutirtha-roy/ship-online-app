@@ -29,6 +29,8 @@
         }
 
         setSession($email, $customerNumber);
+        $_SESSION['name'] = $name;
+        $_SESSION['just_registered'] = true;
 
         header("location: ../request_shipment/pre-request-shipment.php");
     }
@@ -80,6 +82,7 @@
 
     function setSession($email, $customerNumber) {
         session_start();
+        $_SESSION['name'] = "";
         $_SESSION['loggedin'] = true;
         $_SESSION['email'] = $email;
         $_SESSION['customer_number'] = $customerNumber;
