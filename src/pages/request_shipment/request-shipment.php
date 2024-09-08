@@ -1,4 +1,7 @@
 <?php
+include '../../../src/service/request_service.php';
+include '../../../src/configuration/connection/connect.php';
+
 session_start();
 
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
@@ -10,22 +13,23 @@ $name = $_SESSION['name'];
 $customer_number = $_SESSION['customer_number'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $description = $_POST['description'];
-    $weight = $_POST['weight'];
-    $pickupAddress = $_POST['pickupAddress'];
-    $pickupSuburb = $_POST['pickupSuburb'];
+    $requestData = array(
+        'customer_number' => $customer_number,
+        'description' => $_POST['description'],
+        'weight' => (int)$_POST['weight'],
+        'pickupAddress' => $_POST['pickupAddress'],
+        'pickupSuburb' => $_POST['pickupSuburb'],
+        'pickupDay' => (int)$_POST['pickupDay'],
+        'pickupMonth' => (int)$_POST['pickupMonth'],
+        'pickupYear' => $_POST['pickupYear'],
+        'pickupTime' => $_POST['pickupTime'],
+        'receiverName' => $_POST['receiverName'],
+        'deliveryAddress' => $_POST['deliveryAddress'],
+        'deliverySuburb' => $_POST['deliverySuburb'],
+        'deliveryState' => $_POST['deliveryState']
+    );
 
-    $pickupDay = $_POST['pickupDay'];
-    $pickupMonth = $_POST['pickupMonth'];
-    $pickupYear = $_POST['pickupYear'];
-
-    $pickupTime = $_POST['pickupTime'];
-    $receiverName = $_POST['receiverName'];
-    $deliveryAddress = $_POST['deliveryAddress'];
-    $deliverySuburb = $_POST['deliverySuburb'];
-    $deliveryState = $_POST['deliveryState'];
-
-    
+    $requestResponse = requestShipment($dbConnect, $requestData);
 }
 ?>
 
@@ -40,6 +44,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <?php require '../common/nav.php' ?>
+
+    <?php
+        if($_SERVER["REQUEST_METHOD"] == "POST" && !$requestResponse['success']) {
+            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+              <i class='bi bi-exclamation-triangle-fill me-2'></i>
+              " . $requestResponse['errors'] . "
+              <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+          </div>";
+        }
+    ?>
 
     <div class="container">
         <div class="row justify-content-center">
