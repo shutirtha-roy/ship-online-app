@@ -40,7 +40,7 @@
                                     <a class="nav-link" href="../account/register.php" tabindex="-1">Register</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../Admin/admin.php" tabindex="-1">Admin</a>
+                                    <a class="nav-link" href="../admin/admin.php" tabindex="-1">Admin</a>
                                 </li>';
                         }
 

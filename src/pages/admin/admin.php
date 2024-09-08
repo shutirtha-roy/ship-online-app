@@ -1,3 +1,18 @@
+<?php
+include '../../../src/service/admin_service.php';
+include '../../../src/configuration/connection/connect.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $day = $_POST['pickupDay'];
+    $month = $_POST['pickupMonth'];
+    $year = $_POST['pickupYear'];
+    $dateType = $_POST['dateItem'];
+
+    $adminResponse = adminResults($dbConnect, $dateType, $day, $month, $year);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +31,7 @@
             <div class="col-lg-8">
                 <div class="admin-panel">
                     <h2 class="text-center mb-4">ShipOnline System Administration</h2>
-                    <form>
+                    <form method="post" action="admin.php">
                         <div class="row mb-4">
                             <label class="form-label">Date for Retrieve:</label>
                             <div class="col-md-2">
@@ -66,13 +81,46 @@
                         
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-show">
-                                <i class="bi bi-search me-2"></i>Show Results
+                                <i class="bi bi-search me-2"></i>Show
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+
+        <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && $adminResponse['success']): ?>
+            <div class="mt-5">
+                <h3>Results</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <?php foreach (array_keys($adminResponse['result'][0]) as $header): ?>
+                                <th><?= ucwords(str_replace('_', ' ', $header)) ?></th>
+                            <?php endforeach; ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($adminResponse['result'] as $row): ?>
+                            <tr>
+                                <?php foreach ($row as $value): ?>
+                                    <td><?= $value ?></td>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <div class="mt-3">
+                    <p>Total Requests: <?= $adminResponse['totalRequest'] ?>
+                    ,       
+                    <?php if ($_POST['dateItem'] == 'pickupDate'): ?>
+                        Total Weight: <?= $adminResponse['totalWeight'] ?> kg
+                    <?php endif; ?></p>
+                    
+                </div>
+            </div>
+
+        <?php endif; ?>
     </div>
 
     <footer class="bg-light text-center text-muted py-3 mt-5">

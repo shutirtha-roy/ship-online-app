@@ -14,5 +14,8 @@ define('EMPTY_DELIVERY_ADDRESS', 'Delivery address is required.');
 define('EMPTY_DELIVERY_SUBURB', 'Delivery suburb is required.');
 define('INVALID_DELIVERY_STATE', 'Invalid delivery state selected.');
 define('REQUEST_INDEX', '-REQ-');
-define('INVALID_REQUEST', 'The requesst is invalid.');
+define('INVALID_REQUEST', 'The request is invalid.');
+define('NO_DATE_TYPE', 'The date type is invalid.');
+define('REQUEST_DATE', 'requestDate');
+define('PICKUP_DATE', 'pickupDate');
 ?>

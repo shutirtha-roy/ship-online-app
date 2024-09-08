@@ -1,18 +1,5 @@
 <?php
     include '../../configuration/constants/database-constants.php';
-
-    function selectQuery($dbConnect, $table, 
-        $columns = ALL, $conditions = '') {
-        $sqlString = "SELECT $columns FROM $table";
-        
-        if ($conditions) {
-            $sqlString .= " WHERE $conditions";
-        }
-        
-        $result = queryResult($dbConnect, $sqlString);
-
-        return $result;
-    }
     
     function insertQuery($dbConnect, $table, $data) {
         $columns = array_keys($data);
