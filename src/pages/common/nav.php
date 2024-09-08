@@ -46,13 +46,10 @@
 
                         if($loggedin) {
                             echo '<li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="pre-request-shipment.php">Dashboard</a>
+                                        <a class="nav-link" aria-current="page" href="pre-request-shipment.php">Dashboard</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" aria-current="page" href="request-shipment.php">Request Shipments</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">My Shipments</a>
                                     </li>';
                        } 
                     ?>
