@@ -53,6 +53,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
           </div>";
         }
+
+        if($_SERVER["REQUEST_METHOD"] == "POST" && $requestResponse['success']) {
+            echo "<div class='alert alert-secondary alert-dismissible fade show' role='alert'>
+                Please check the message below the Register button.
+                
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>";
+        }
     ?>
 
     <div class="container">
@@ -182,6 +190,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-request">Request</button>
                         </div>
+
+                        <?php
+                            if($_SERVER["REQUEST_METHOD"] == "POST" && $requestResponse['success']) {
+                                echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <i class='bi bi-check-circle-fill me-2'></i>
+                                    " . $requestResponse['message'] . "
+                                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                                </div>";
+                            }
+                        ?>
                     </form>
                 </div>
             </div>
