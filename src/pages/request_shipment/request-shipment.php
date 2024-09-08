@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'pickupSuburb' => $_POST['pickupSuburb'],
         'pickupDay' => (int)$_POST['pickupDay'],
         'pickupMonth' => (int)$_POST['pickupMonth'],
-        'pickupYear' => $_POST['pickupYear'],
+        'pickupYear' => (int)$_POST['pickupYear'],
         'pickupTime' => $_POST['pickupTime'],
         'receiverName' => $_POST['receiverName'],
         'deliveryAddress' => $_POST['deliveryAddress'],

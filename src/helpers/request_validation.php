@@ -9,5 +9,9 @@
             && $weight <= 20;
     }
 
-    
+    function isValidDate($day, $month) {
+        if ($day < 0) {
+            return false;
+        }
+    }
 ?>

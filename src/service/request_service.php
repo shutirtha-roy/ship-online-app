@@ -5,7 +5,7 @@
 
     function requestShipment($dbConnect, $requestData) {
         $hasCorrectInput = hasCorrectRequest($requestData); 
-
+        //print_r($hasCorrectInput);
         if(!$hasCorrectInput['success']) {
             return $hasCorrectInput;
         }
@@ -14,10 +14,7 @@
     }
 
     function hasCorrectRequest($requestData) {
-        print_r($requestData);
-        echo $requestData['description'];
         if(!matchEmptyItem($requestData['description'])) {
-            echo "IT IS HERE";
             return ['success' => false, 'errors' => EMPTY_DESCRIPTION];
         }
 
@@ -33,8 +30,13 @@
             return ['success' => false, 'errors' => EMPTY_PICKUP_SUBURB];
         }
 
-        calculatePickupDateTime($requestData['pickupDay'] , $requestData['pickupMonth'], 
+        $timeResponse = calculatePickupDateTime($requestData['pickupDay'] , 
+            $requestData['pickupMonth'], 
             $requestData['pickupYear'], $requestData['pickupTime']);
+
+        if(!$timeResponse['success']) {
+            return $timeResponse;
+        }
 
         if(!matchEmptyItem($requestData['pickupSuburb'])) {
             return ['success' => false, 'errors' => EMPTY_PICKUP_SUBURB];
@@ -56,27 +58,33 @@
     }
 
     function calculatePickupDateTime($day, $month, $year, $time) {
-        $currentDateTime = new DateTime();
-        $pickupDateTime = DateTime::createFromFormat('Y-m-d H:i', "$year-$month-$day $time");
-        
-        echo $pickupDateTime === false;
-        if ($pickupDateTime === false) {
+        if(!checkdate($month, $day, $year)) {
             return ['success' => false, 'errors' => INVALID_PICKUP_DATE];
         }
-    
-        $interval = $currentDateTime->diff($pickupDateTime);
-        $hoursDifference = $interval->days * 24 + $interval->h;
-        if ($hoursDifference < 24) {
-            return ['success' => false, 'errors' => PICKUP_TOO_SOON];
+
+        $parts = explode(':', $time);
+        $hour = (int)$parts[0];
+        $min = (int)$parts[1];
+        $timeResponse = hasCorrectPickupTime($hour);
+
+        if(!$timeResponse['success']) {
+            return $timeResponse;
         }
-    
-        $pickupHour = $pickupDateTime->format('H');
-        if ($pickupHour < 8 || $pickupHour >= 20) {
-            return ['success' => false, 'errors' => PICKUP_TIME_OUT_OF_RANGE];
-        }
-    
-        return true; 
+
+
+
+        return ['success' => true, 'errors' => ''];
     }
+
+    function hasCorrectPickupTime($hour) {
+        if($hour < 8 || $hour > 20) {
+            return ['success' => false, 'errors' => INVALID_PICKUP_TIME];
+        }
+
+        return ['success' => true, 'errors' => ''];
+    }
+
+    
 
     function generateRequestNumber($dbConnect, $customer_number) {
         $customerNumber = $_SESSION['customer_number'];
