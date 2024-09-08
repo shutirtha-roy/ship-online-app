@@ -1,4 +1,12 @@
 <?php
+/*
+Name: Shutirtha Roy
+Student ID: 105008711
+Course: COS80021 Web Application Development
+Function: This file is used to show the results of the request date and pickup date 
+depending on the date entered by the user.
+*/
+
 include '../../../src/service/admin_service.php';
 include '../../../src/configuration/connection/connect.php';
 
@@ -25,6 +33,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <?php require '../common/nav.php' ?>
+
+    <?php
+        if($_SERVER["REQUEST_METHOD"] == "POST" && !$adminResponse['success']) {
+            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+            <i class='bi bi-exclamation-triangle-fill me-2'></i>
+            " . $adminResponse['errors'] . "
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        </div>";
+        }
+    ?>
 
     <div class="container">
         <div class="row justify-content-center">

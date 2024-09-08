@@ -1,4 +1,17 @@
 <?php
+/*
+Name: Shutirtha Roy
+Student ID: 105008711
+Course: COS80021 Web Application Development
+Function: This file is used by the customer to request a shipment by providing the 
+description, weight, pick up information, address and delivery information. Here, 
+the pricing is $20 for 0-2 kg and $3 for each additional kg. The preferred pick-up 
+date and time are at least 24 hours after the current time. The cost is calculated
+depending on the weight and after the customer submits it, it is stored in the shipping_request
+ table.
+*/
+
+
 include '../../../src/service/request_service.php';
 include '../../../src/configuration/connection/connect.php';
 

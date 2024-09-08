@@ -18,4 +18,6 @@ define('INVALID_REQUEST', 'The request is invalid.');
 define('NO_DATE_TYPE', 'The date type is invalid.');
 define('REQUEST_DATE', 'requestDate');
 define('PICKUP_DATE', 'pickupDate');
+define('NO_RECORDS_FOUND', 'No Records Found');
+
 ?>

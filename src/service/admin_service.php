@@ -21,13 +21,27 @@
             $results = requestPickupDate($dbConnect, $date);
         }
 
+        if (!$results) {
+            return ['success' => false, 'errors' => NO_RECORDS_FOUND];
+        }
+
         $totalRequests = count($results);
-        $totalWeight = array_sum(array_column($results, 'weight'));
+        $totalWeight = getTotalWeight($results);
       
         return ['success' => true, 'errors' => INVALID_REQUEST, 
             'result' => $results,
             'totalRequest' => $totalRequests,
             'totalWeight' => $totalWeight];
+    }
+
+    function getTotalWeight($results) {
+        $totalWeight = 0;
+
+        foreach ($results as $result) {
+            $totalWeight += intval($result['weight']);
+        }
+
+        return $totalWeight;
     }
 
     function hasCorrectRequest($dateType, $day, $month, $year) {
@@ -64,5 +78,7 @@
 
             return $results;
         }
+
+        return $results;
     }
 ?>

@@ -40,9 +40,7 @@
         $subject = "shipping request with ShipOnline";
         $message = printEmailMessage($name, $requestNumber, $cost, 
             $pickupTime , $pickupDate);
-        $headers = 'From: ShipOnline 105008711@student.swin.edu.au' . "\r\n" .
-            'Reply-To: ' .$name . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
+        $headers = 'From: info@shiponline.com';
         mail($to, $subject, $message, $headers, "-r 105008711@student.swin.edu.au");
     }
 
@@ -55,8 +53,7 @@
 
     function printRequestMessage($requestNumber, $cost, $pickupTime , $pickupDate) {
         return "Your request number is $requestNumber.
-            The cost is $cost.We will pick-up the item 
-            at $pickupTime on $pickupDate.";
+            The cost is $$cost.We will pick-up the item at $pickupTime on $pickupDate.";
     }
 
     function calculateCost($weight) {

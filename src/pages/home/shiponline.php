@@ -1,3 +1,12 @@
+<?php
+/*
+Name: Shutirtha Roy
+Student ID: 105008711
+Course: COS80021 Web Application Development
+Function: This file is used to redirect the user to use the Login, Registration or Admin page. 
+*/
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
