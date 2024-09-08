@@ -1,11 +1,12 @@
 <?php
 /*
-Name: Shutirtha Roy
-Student ID: 105008711
-Course: COS80021 Web Application Development
-Function: This file is used to register the user's name, email, password, phone. Also 
-it checks the validation of the inputs. After registering, the data is stored in the 
-customer table.
+    Name: Shutirtha Roy
+    Student ID: 105008711
+    Course: COS80021 Web Application Development
+    Function: This file is used to register the user's name, email, password, phone. Also 
+    it checks the validation of the inputs. After registering, the data is stored in the 
+    customer table. Further details of the function of registerUser is explained in the account_service.php
+    file.
 */
 
 include '../../../src/service/account_service.php';

@@ -1,4 +1,14 @@
 <?php
+    /* 
+        Name: Shutirtha Roy
+        Student ID: 105008711
+        Course: COS80021 Web Application Development
+        Function: This file contains all the logics 
+        admin.php. The function adminResults is used to see the output of the details 
+        of the requests based on the date and the Date Item selected. Different results 
+        with different keys are generated for Request Date and Pick-up Date.
+    */ 
+
     include '../../repository/admin_repository.php';
     include '../../helpers/request_validation.php';
     include '../../configuration/constants/request-service-contants.php';

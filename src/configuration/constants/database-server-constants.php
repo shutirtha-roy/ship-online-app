@@ -1,4 +1,11 @@
 <?php
+/* 
+    Name: Shutirtha Roy
+    Student ID: 105008711
+    Course: COS80021 Web Application Development
+    Function: This file contains all the constants of connect.php. 
+*/
+
 define("SERVER_NAME", "feenix-mariadb.swin.edu.au");
 define("LOCAL_SERVER_NAME", "localhost");
 define("LOCAL_USERNAME", "root");

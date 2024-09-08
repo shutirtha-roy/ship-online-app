@@ -1,4 +1,11 @@
 <?php
+/* 
+    Name: Shutirtha Roy
+    Student ID: 105008711
+    Course: COS80021 Web Application Development
+    Function: This file contains all the constants of account_service.php. 
+*/
+
 define("WRONG_REGISTRATION_INPUT", 'Please enter the correct input.');
 define('ERROR_NAME_REQUIRED', 'Please enter a valid name.');
 define('ERROR_EMAIL_INVALID', 'Please enter a valid email address.');

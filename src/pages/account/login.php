@@ -1,9 +1,11 @@
 <?php
 /*
-Name: Shutirtha Roy
-Student ID: 105008711
-Course: COS80021 Web Application Development
-Function: This file is used to login the user with the customer ID and password.
+    Name: Shutirtha Roy
+    Student ID: 105008711
+    Course: COS80021 Web Application Development
+    Function: This file is used to login the user with the customer ID and password. 
+    Further details of the function of loginUser is explained in the account_service.php
+file.
 */
 
 include '../../../src/service/account_service.php';

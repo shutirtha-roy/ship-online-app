@@ -1,4 +1,12 @@
 <?php
+/* 
+    Name: Shutirtha Roy
+    Student ID: 105008711
+    Course: COS80021 Web Application Development
+    Function: This file contains all the constants of 
+    admin_service.php and request_service.php. 
+*/
+
 define('EMPTY_DESCRIPTION', 'No description has been entered.');
 define('INVALID_WEIGHT', 'Weight must be a number between 0 and 20 kg.');
 define('EMPTY_PICKUP_ADDRESS', 'Pickup address is required.');

@@ -1,4 +1,12 @@
 <?php
+    /* 
+        Name: Shutirtha Roy
+        Student ID: 105008711
+        Course: COS80021 Web Application Development
+        Function: This file contains all the account validations of 
+        account_service.php. 
+    */
+
     function matchName($name) {
         return !empty($name);
     }

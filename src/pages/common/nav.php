@@ -1,4 +1,13 @@
 <?php
+    /*
+        Name: Shutirtha Roy
+        Student ID: 105008711
+        Course: COS80021 Web Application Development
+        Function: This file is used to show the project navigations. Here 2 logics are
+        used to seperate the pages shown when the user is logged in and when the 
+        user is logged out.
+    */
+
     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         $loggedin = true;
     } else {

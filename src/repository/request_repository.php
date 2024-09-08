@@ -1,4 +1,14 @@
 <?php
+    /* 
+        Name: Shutirtha Roy
+        Student ID: 105008711
+        Course: COS80021 Web Application Development
+        Function: This file contains all the database query logic which
+         contains the getTotalRowsFromCustomerId which calculates the total
+         entries of the requests per customer. The getCustomerNameAndEmail
+         returns the name and email of the customer with the customer number.
+    */
+
     include '../../repository/repository.php';
 
     function getTotalRowsFromCustomerId($dbConnect, $customerNumber) {

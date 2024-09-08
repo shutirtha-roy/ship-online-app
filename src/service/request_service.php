@@ -1,4 +1,15 @@
 <?php
+    /* 
+        Name: Shutirtha Roy
+        Student ID: 105008711
+        Course: COS80021 Web Application Development
+        Function: This file contains all the logics 
+        request.php. The function requestShipment is used to insert all the 
+        shipment details of the customer. The function sendConfirmationEmail is 
+        used to send confirmation email only if the shipment is inserted successfully.
+        The function generateRequestNumber is used to generate the request number.
+    */
+
     include '../../repository/request_repository.php';
     include '../../helpers/request_validation.php';
     include '../../configuration/constants/request-service-contants.php';

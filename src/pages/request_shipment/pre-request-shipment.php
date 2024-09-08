@@ -1,4 +1,12 @@
 <?php
+/*
+    Name: Shutirtha Roy
+    Student ID: 105008711
+    Course: COS80021 Web Application Development
+    Function: This file is used to show the User Interface when the user registers.
+    Further it is also a dashboard which can be used to redirect to the request page. 
+*/
+
 session_start();
 
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {

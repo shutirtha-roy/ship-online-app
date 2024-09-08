@@ -1,10 +1,11 @@
 <?php
 /*
-Name: Shutirtha Roy
-Student ID: 105008711
-Course: COS80021 Web Application Development
-Function: This file is used to show the results of the request date and pickup date 
-depending on the date entered by the user.
+    Name: Shutirtha Roy
+    Student ID: 105008711
+    Course: COS80021 Web Application Development
+    Function: This file is used to show the results of the request date and pickup date 
+    depending on the date entered by the user based on date for retrival and date item. 
+    Further details of the function of adminResults is explained in the admin_service.php file.
 */
 
 include '../../../src/service/admin_service.php';

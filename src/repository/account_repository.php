@@ -1,4 +1,17 @@
 <?php
+    /* 
+        Name: Shutirtha Roy
+        Student ID: 105008711
+        Course: COS80021 Web Application Development
+        Function: This file contains all the database query logic of 
+        account_service.php. The function hasCustomer returns true if the 
+        customers exists by email and password. The function hasCustomerWithCustomerNumber
+        check whether the customer exists by customer number and password. The function
+        getCustomerNameFromCustomerId fetches the name of the customer from customer id.
+        The function getAllCustomerNumber calculates the total customer. The function 
+        doesCustomerExist checks whether the customer exists by customer id.
+    */   
+
     include '../../repository/repository.php';
 
     function hasCustomer($dbConnect, $email, $password) {

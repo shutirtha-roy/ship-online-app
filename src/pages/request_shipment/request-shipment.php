@@ -8,7 +8,7 @@ description, weight, pick up information, address and delivery information. Here
 the pricing is $20 for 0-2 kg and $3 for each additional kg. The preferred pick-up 
 date and time are at least 24 hours after the current time. The cost is calculated
 depending on the weight and after the customer submits it, it is stored in the shipping_request
- table.
+ table. Further details are explained in the request_service.php file.
 */
 
 
