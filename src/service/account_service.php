@@ -104,7 +104,7 @@
         if($loginUser) {
             $name = getCustomerNameFromCustomerId($dbConnect, $customerNumber);
             setLoginSession($customerNumber, $name);
-            header("location: ../request_shipment/pre-request-shipment.php");
+            header("location: ../request_shipment/request-shipment.php");
         };
     }
 ?>
