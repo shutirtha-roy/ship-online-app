@@ -8,7 +8,7 @@ PRIMARY KEY (customer_number)
 );
 
 CREATE TABLE shipping_request (
-    request_number INT AUTO_INCREMENT,
+    request_number varchar (255) NOT NULL,
     customer_number VARCHAR(255) NOT NULL,
     request_date DATE NOT NULL,
     item_description TEXT NOT NULL,

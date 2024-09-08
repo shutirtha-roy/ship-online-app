@@ -8,4 +8,17 @@
 
         return $numExistRows;
     }
+
+    function getCustomerNameAndEmail($dbConnect, $customerNumber) {
+        $customer = "Select * from customer where customer_number = '$customerNumber'";
+        $result = queryResult($dbConnect, $customer);
+        if ($row = mysqli_fetch_assoc($result)) {
+            return [
+                'name' => $row['name'],
+                'email' => $row['email_address']
+            ];
+        } else {
+            return null;
+        }
+    }
 ?>

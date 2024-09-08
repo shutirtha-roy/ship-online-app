@@ -22,16 +22,39 @@
             $requestData['pickupYear'], 
             $requestData['pickupMonth'], 
             $requestData['pickupDay']);
-        $message = printMessage($requestNumber, $cost, 
+        $message = 'Thank you!' . printRequestMessage($requestNumber, $cost, 
             $requestData['pickupTime'], $pickupDate);
 
+        sendConfirmationEmail($dbConnect, $requestData['customer_number'], 
+            $requestNumber, $cost, $requestData['pickupTime'], $pickupDate);
 
         return ['success' => true, 'errors' => INVALID_REQUEST, 
             'message' => $message];
     }
 
-    function printMessage($requestNumber, $cost, $pickupTime , $pickupDate) {
-        return "Thank you! Your request number is $requestNumber.
+    function sendConfirmationEmail($dbConnect, $customerNumber,
+        $requestNumber, $cost, $pickupTime, $pickupDate) {
+        $userDetails = getCustomerNameAndEmail($dbConnect, $customerNumber);
+        $name = $userDetails['name'];
+        $to = $userDetails['email'];
+        $subject = "shipping request with ShipOnline";
+        $message = printEmailMessage($name, $requestNumber, $cost, 
+            $pickupTime , $pickupDate);
+        $headers = 'From: ShipOnline 105008711@student.swin.edu.au' . "\r\n" .
+            'Reply-To: ' .$name . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+        mail($to, $subject, $message, $headers, "-r 105008711@student.swin.edu.au");
+    }
+
+    function printEmailMessage($name, $requestNumber, $cost, $pickupTime , $pickupDate) {
+        return "Dear $name, Thank you for using ShipOnline!" 
+         .  printRequestMessage($requestNumber, 
+                $cost, $pickupTime , 
+                $pickupDate);
+    }
+
+    function printRequestMessage($requestNumber, $cost, $pickupTime , $pickupDate) {
+        return "Your request number is $requestNumber.
             The cost is $cost.We will pick-up the item 
             at $pickupTime on $pickupDate.";
     }
