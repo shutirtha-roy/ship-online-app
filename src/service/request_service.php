@@ -11,11 +11,41 @@
 
         $requestNumber = generateRequestNumber($dbConnect, $requestData['customer_number']);
         $data = prepareRequestData($requestData, $requestNumber);
-        print_r($data);
-
         $result = insertQuery($dbConnect, 'shipping_request', $data);
 
-        return $hasCorrectInput;
+        if(!$result) {
+            return ['success' => false, 'errors' => INVALID_REQUEST];
+        }
+
+        $cost = calculateCost($requestData['weight']);
+        $pickupDate = sprintf('%04d-%02d-%02d', 
+            $requestData['pickupYear'], 
+            $requestData['pickupMonth'], 
+            $requestData['pickupDay']);
+        $message = printMessage($requestNumber, $cost, 
+            $requestData['pickupTime'], $pickupDate);
+
+
+        return ['success' => true, 'errors' => INVALID_REQUEST, 
+            'message' => $message];
+    }
+
+    function printMessage($requestNumber, $cost, $pickupTime , $pickupDate) {
+        return "Thank you! Your request number is $requestNumber.
+            The cost is $cost.We will pick-up the item 
+            at $pickupTime on $pickupDate.";
+    }
+
+    function calculateCost($weight) {
+        $baseWeight = 2;
+        $baseCost = 20;
+        $additionalCost = 3;
+
+        if($weight == $baseWeight) {
+            return $baseCost;
+        }
+
+        return $baseCost + ($weight - $baseWeight) * $additionalCost;
     }
 
     function hasCorrectRequest($requestData) {

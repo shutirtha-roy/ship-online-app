@@ -13,6 +13,6 @@ define('EMPTY_RECEIVER_NAME', 'Receiver name is required.');
 define('EMPTY_DELIVERY_ADDRESS', 'Delivery address is required.');
 define('EMPTY_DELIVERY_SUBURB', 'Delivery suburb is required.');
 define('INVALID_DELIVERY_STATE', 'Invalid delivery state selected.');
-
 define('REQUEST_INDEX', '-REQ-');
+define('INVALID_REQUEST', 'The requesst is invalid.');
 ?>
