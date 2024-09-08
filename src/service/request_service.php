@@ -5,7 +5,6 @@
 
     function requestShipment($dbConnect, $requestData) {
         $hasCorrectInput = hasCorrectRequest($requestData); 
-        //print_r($hasCorrectInput);
         if(!$hasCorrectInput['success']) {
             return $hasCorrectInput;
         }
@@ -65,26 +64,47 @@
         $parts = explode(':', $time);
         $hour = (int)$parts[0];
         $min = (int)$parts[1];
-        $timeResponse = hasCorrectPickupTime($hour);
+        $timeResponse = hasCorrectPickupTime($hour, $min);
 
         if(!$timeResponse['success']) {
             return $timeResponse;
         }
 
+        $isWithinTwentyFourResponse = isWithinTwentyFourHours($day, $month, $year, $hour, $min);
 
+        if(!$isWithinTwentyFourResponse['success']) {
+            return $isWithinTwentyFourResponse;
+        }
 
         return ['success' => true, 'errors' => ''];
     }
 
-    function hasCorrectPickupTime($hour) {
+    function hasCorrectPickupTime($hour, $min) {
         if($hour < 8 || $hour > 20) {
+            return ['success' => false, 'errors' => INVALID_PICKUP_TIME];
+        }
+
+        if($hour == 20 && $min > 0) {
             return ['success' => false, 'errors' => INVALID_PICKUP_TIME];
         }
 
         return ['success' => true, 'errors' => ''];
     }
 
-    
+    function isWithinTwentyFourHours($day, $month, $year, $hour, $min) {
+        date_default_timezone_set('Australia/Melbourne');
+
+        $currentTimestamp = time();
+        $pickupTimestamp = mktime($hour, $min, 0, $month, $day, $year);
+        
+        $hoursDifference = ($pickupTimestamp - $currentTimestamp) / 3600;
+
+        if($hoursDifference < 24) {
+            return ['success' => false, 'errors' => PICKUP_TOO_SOON];
+        }
+
+        return ['success' => true, 'errors' => ''];
+    }
 
     function generateRequestNumber($dbConnect, $customer_number) {
         $customerNumber = $_SESSION['customer_number'];
