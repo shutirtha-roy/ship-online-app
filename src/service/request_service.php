@@ -1,5 +1,5 @@
 <?php
-    include '../../repository/account_repository.php';
+    include '../../repository/request_repository.php';
     include '../../helpers/request_validation.php';
     include '../../configuration/constants/request-service-contants.php';
 
@@ -8,6 +8,12 @@
         if(!$hasCorrectInput['success']) {
             return $hasCorrectInput;
         }
+
+        $requestNumber = generateRequestNumber($dbConnect, $requestData['customer_number']);
+        $data = prepareRequestData($requestData, $requestNumber);
+        print_r($data);
+
+        $result = insertQuery($dbConnect, 'shipping_request', $data);
 
         return $hasCorrectInput;
     }
@@ -106,8 +112,36 @@
         return ['success' => true, 'errors' => ''];
     }
 
-    function generateRequestNumber($dbConnect, $customer_number) {
+    function prepareRequestData($requestData, $requestNumber) {
+        date_default_timezone_set('Australia/Melbourne');
+        $requestDate = date('Y-m-d');
+        $pickupDate = sprintf('%04d-%02d-%02d', 
+            $requestData['pickupYear'], 
+            $requestData['pickupMonth'], 
+            $requestData['pickupDay']);
+        $pickupTime = $requestData['pickupTime'];
+            
+        return [
+            'request_number' => "'" . $requestNumber . "'",
+            'customer_number' => "'" . $requestData['customer_number'] . "'",
+            'request_date' => "'" .$requestDate . "'",
+            'item_description' => "'" .$requestData['description'] . "'",
+            'weight' => $requestData['weight'],
+            'pickup_address' => "'" . $requestData['pickupAddress'] . "'",
+            'pickup_suburb' => "'" . $requestData['pickupSuburb'] . "'",
+            'preferred_pickup_date' => "'" .$pickupDate . "'",
+            'preferred_pickup_time' => "'" .$pickupTime . "'",
+            'receiver_name' => "'" . $requestData['receiverName'] . "'",
+            'delivery_address' => "'" . $requestData['deliveryAddress'] . "'",
+            'delivery_suburb' => "'" . $requestData['deliverySuburb'] . "'",
+            'delivery_state' => "'" . $requestData['deliveryState'] . "'"
+        ];
+    }
+
+    function generateRequestNumber($dbConnect, $customerNumber) {
         $customerNumber = $_SESSION['customer_number'];
-        //To be implemented
+        $totalCustomerRows = getTotalRowsFromCustomerId($dbConnect, $customerNumber);
+        $requestNumber = $customerNumber . REQUEST_INDEX. ($totalCustomerRows + 1);
+        return $requestNumber;
     }
 ?>
