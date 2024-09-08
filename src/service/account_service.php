@@ -97,7 +97,7 @@
 
     function loginUser($dbConnect, $customerNumber, $password) {
         if(!hasCustomerWithCustomerNumber($dbConnect, $customerNumber, $password)) {
-            return ['success' => false, 'errors' => CUSTOMER_ALREADY_EXISTS];
+            return ['success' => false, 'errors' => INVALID_PASSWORD];
         }
 
         $loginUser = hasLoginCustomer($dbConnect, $customerNumber, $password);

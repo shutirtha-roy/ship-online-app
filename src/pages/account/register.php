@@ -27,7 +27,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <?php
         if($_SERVER["REQUEST_METHOD"] == "POST" && !$userResponse['success']) {
-            echo "<p style='color: red;'>".$userResponse['errors']."</p>";
+            echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+              <i class='bi bi-exclamation-triangle-fill me-2'></i>
+              " . $userResponse['errors'] . "
+              <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+          </div>";
         }
     ?>
     <div class="container">

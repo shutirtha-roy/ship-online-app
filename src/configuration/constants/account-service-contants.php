@@ -10,5 +10,6 @@ define('ERROR_PHONE_LENGTH', 'Phone number should be 10 digits for local numbers
 define('SUCCESS_REGISTRATION', 'Registration successful');
 define('ERROR_REGISTRATION', 'Registration failed');
 define('CUSTOMER_ALREADY_EXISTS', 'Customer Already Exists');
+define('INVALID_PASSWORD', 'Invalid username or password. Please try again.');
 define('CUSTOMER_NUMBER_INDEX', 'CUS-S0');
 ?>
