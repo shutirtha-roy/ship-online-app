@@ -1,9 +1,6 @@
 # Ship Online Project
 
 Author: Shutirtha Roy  
-ID: 105008711
-
-Project URL: [https://mercury.swin.edu.au/cos80021/s105008711/Project1/src/pages/home/shiponline.php](https://mercury.swin.edu.au/cos80021/s105008711/Project1/src/pages/home/shiponline.php)
 
 ## Code Instructions
 
@@ -68,14 +65,3 @@ The project structure is as follows:
    - account_service.php
    - admin_service.php
    - request_service.php
-
-## Test Users
-
-- Customer Number: CUS-S01
-  Password: edgfekF983(i
-
-- Customer number: CUS-S02
-  Password: Dragonvi123
-
-- Customer number: CUS-S03
-  Password: egrg54tygws
